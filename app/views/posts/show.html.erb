@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<%
+=begin%>
+ <%= render partial: "post", locals: { post: @post, include_form: true } %> 
+<%
+=end%>
+<%= render @post, include_form: true %>
+
+<div>
+  <%= link_to "Edit this post", edit_post_path(@post), class: 'edit-link' %> |
+  <%= link_to "Back to posts", posts_path, class: 'back-link' %>
+  <%= button_to "Destroy this post", @post, method: :delete %>
+</div>
