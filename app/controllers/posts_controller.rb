@@ -22,6 +22,27 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+
+    if @post.update(post_params)
+      redirect_to post_path(@post), notice: 'Se ha actualizado un Post'
+    else
+      flash.now[:notice] = 'Hubo un error al actualizar el Post'
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @posts = Post.find(params[:id])
+    flash[:notice] = 'Se ha eliminado el post correctamente'
+    redirect_to posts_path
+  end
+
   private
 
   def post_params
